@@ -13,19 +13,49 @@
 <body>
     <!-- Main container for the app -->
     <div id="app">
-        <!-- Progress bar on the right side -->
-        <div class="progress-bar">
-            <div class="progress"></div>
+        <!-- Add this new time progress bars container -->
+        <div class="time-progress-bars">
+            <div class="time-bar" data-card="0">
+                <span class="time-label">Card 1</span>
+                <div class="time-progress-bar">
+                    <div class="time-progress"></div>
+                </div>
+                <span class="time-spent">0s</span>
+            </div>
+            <div class="time-bar" data-card="1">
+                <span class="time-label">Card 2</span>
+                <div class="time-progress-bar">
+                    <div class="time-progress"></div>
+                </div>
+                <span class="time-spent">0s</span>
+            </div>
+            <div class="time-bar" data-card="2">
+                <span class="time-label">Card 3</span>
+                <div class="time-progress-bar">
+                    <div class="time-progress"></div>
+                </div>
+                <span class="time-spent">0s</span>
+            </div>
+            <div class="time-bar" data-card="3">
+                <span class="time-label">Card 4</span>
+                <div class="time-progress-bar">
+                    <div class="time-progress"></div>
+                </div>
+                <span class="time-spent">0s</span>
+            </div>
+            <div class="time-bar" data-card="4">
+                <span class="time-label">Card 5</span>
+                <div class="time-progress-bar">
+                    <div class="time-progress"></div>
+                </div>
+                <span class="time-spent">0s</span>
+            </div>
         </div>
 
         <!-- Container for the cards -->
         <div id="card-container">
             <!-- Card 1 -->
             <div class="card" data-card-index="0">
-                <!-- Time spent on the card -->
-                <div class="left-side">
-                    <p>Time: <span class="time-spent">0</span>s</p>
-                </div>
                 <!-- Main content of the card -->
                 <div class="content">
                     <h2>Introduction to Algebra</h2>
@@ -43,16 +73,14 @@
 
             <!-- Card 2 -->
             <div class="card" data-card-index="1">
-                <div class="left-side">
-                    <p>Time: <span class="time-spent">0</span>s</p>
-                </div>
                 <div class="content">
                     <h2>Basic Algebraic Operations</h2>
                     <p>In algebra, we use four main operations:</p>
                     <p><strong>Addition (+)</strong>, <strong>Subtraction (-)</strong>, <strong>Multiplication
                             (×)</strong>, and <strong>Division (÷)</strong></p>
                     <p>When we combine these with variables like <em>x</em> and <em>y</em>, we can create
-                        <strong>expressions</strong> like:</p>
+                        <strong>expressions</strong> like:
+                    </p>
                     <p>2x + 3y = 10</p>
                 </div>
                 <div class="buttons">
@@ -64,9 +92,6 @@
 
             <!-- Card 3 -->
             <div class="card" data-card-index="2">
-                <div class="left-side">
-                    <p>Time: <span class="time-spent">0</span>s</p>
-                </div>
                 <div class="content">
                     <h2>Order of Operations</h2>
                     <p>Remember the acronym <strong>PEMDAS</strong>:</p>
@@ -84,9 +109,6 @@
 
             <!-- Card 4 -->
             <div class="card" data-card-index="3">
-                <div class="left-side">
-                    <p>Time: <span class="time-spent">0</span>s</p>
-                </div>
                 <div class="content">
                     <h2>Solving Linear Equations</h2>
                     <p>A <strong>linear equation</strong> is an equation where variables are raised to the first power
@@ -105,9 +127,6 @@
 
             <!-- Card 5 -->
             <div class="card" data-card-index="4">
-                <div class="left-side">
-                    <p>Time: <span class="time-spent">0</span>s</p>
-                </div>
                 <div class="content">
                     <h2>Introduction to Quadratic Equations</h2>
                     <p>A <strong>quadratic equation</strong> contains variables raised to the second power.</p>
