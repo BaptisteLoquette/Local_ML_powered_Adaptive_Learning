@@ -1,0 +1,162 @@
+/* Styles the body */
+body {
+    margin: 0;
+    padding: 0;
+    /* Uses a clean font */
+    font-family: Arial, sans-serif;
+}
+
+/* Main app container */
+#app {
+    /* Sets relative positioning for absolute children */
+    position: relative;
+    /* Sets the viewport height */
+    height: 100vh;
+    /* Centers content horizontally and vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Sets overflow to hidden to prevent scrolling */
+    overflow: hidden;
+}
+
+/* Progress bar on the right side */
+.progress-bar {
+    /* Positions it absolutely on the right */
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    /* Centers it vertically */
+    transform: translateY(-50%);
+    /* Sets dimensions */
+    width: 10px;
+    height: 300px;
+    /* Background color */
+    background-color: #eee;
+    /* Rounds the edges */
+    border-radius: 5px;
+    /* Hides overflow */
+    overflow: hidden;
+}
+
+/* The progress indicator inside the progress bar */
+.progress {
+    /* Full width */
+    width: 100%;
+    /* Starts with zero height */
+    height: 0%;
+    /* Background color */
+    background-color: #76c7c0;
+}
+
+/* Card container */
+#card-container {
+    /* Sets relative positioning */
+    position: relative;
+    /* Sets width to be responsive */
+    width: 90%;
+    max-width: 500px; /* Maximum width */
+    height: 80vh;
+    /* Hides overflow */
+    overflow: hidden;
+    /* Rounds the corners */
+    border-radius: 20px;
+    /* Adds a shadow */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Each card */
+.card {
+    /* Positions cards absolutely to overlap */
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* Sets dimensions to match the container */
+    width: 100%;
+    height: 100%;
+    /* Background color */
+    background-color: #f9f9f9;
+    /* Displays content in a column */
+    display: flex;
+    flex-direction: column;
+    /* Centers content vertically and horizontally */
+    justify-content: center;
+    align-items: center;
+    /* Adds padding */
+    padding: 10px;
+    /* Sets z-index to manage stacking order */
+    z-index: 1;
+    /* Adds smooth transition when changing opacity and transform */
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* Hide all cards by default */
+.card {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(100%); /* Start off-screen to the right */
+}
+
+/* Show only the active card */
+.card.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
+    transform: translateX(0); /* Bring to original position */
+}
+
+/* Prepare previous card for swipe-out animation */
+.card.swipe-left {
+    transform: translateX(-100%); /* Move off-screen to the left */
+    opacity: 0;
+}
+
+/* Left side (time display) */
+.left-side {
+    /* Positions it at the top-left */
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+/* Content area */
+.content {
+    /* Centers text */
+    text-align: center;
+    /* Allows scrolling if content overflows */
+    overflow-y: auto;
+    /* Adjusts width to fit the container */
+    width: 100%;
+}
+
+/* Emoji buttons */
+.buttons {
+    /* Positions buttons at the bottom */
+    position: absolute;
+    bottom: 20px;
+    /* Centers buttons horizontally */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Styles for emoji buttons */
+.emoji-button {
+    font-size: 2rem;
+    margin: 0 5px;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+/* Colors for emoji buttons */
+.emoji-button[data-understanding="3"] {
+    color: green;
+}
+
+.emoji-button[data-understanding="2"] {
+    color: orange;
+}
+
+.emoji-button[data-understanding="1"] {
+    color: red;
+}

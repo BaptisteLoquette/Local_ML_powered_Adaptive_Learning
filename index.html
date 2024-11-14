@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Sets the character encoding -->
+    <meta charset="UTF-8">
+    <!-- Title of the webpage -->
+    <title>Math Course Cards</title>
+    <!-- Link to the CSS stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Main container for the app -->
+    <div id="app">
+        <!-- Progress bar on the right side -->
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+
+        <!-- Container for the cards -->
+        <div id="card-container">
+            <!-- Card 1 -->
+            <div class="card" data-card-index="0">
+                <!-- Time spent on the card -->
+                <div class="left-side">
+                    <p>Time: <span class="time-spent">0</span>s</p>
+                </div>
+                <!-- Main content of the card -->
+                <div class="content">
+                    <h2>Introduction to Algebra</h2>
+                    <p><strong>Algebra</strong> is a branch of mathematics dealing with symbols and the rules for manipulating those symbols.</p>
+                    <p>It is a <em>unifying thread</em> of almost all of mathematics.</p>
+                </div>
+                <!-- Emoji buttons -->
+                <div class="buttons">
+                    <button class="emoji-button" data-understanding="3">😊</button>
+                    <button class="emoji-button" data-understanding="2">😐</button>
+                    <button class="emoji-button" data-understanding="1">😕</button>
+                </div>
+            </div>
+
+            <!-- Cards 2 to 10 -->
+            <!-- Include the remaining cards here, similar to Card 1 -->
+            <!-- Card 2 -->
+            <div class="card" data-card-index="1">
+                <div class="left-side">
+                    <p>Time: <span class="time-spent">0</span>s</p>
+                </div>
+                <div class="content">
+                    <h2>Understanding Variables</h2>
+                    <p>A <strong>variable</strong> is a symbol that represents an unknown value.</p>
+                    <p>Variables allow us to write equations and formulas.</p>
+                </div>
+                <div class="buttons">
+                    <button class="emoji-button" data-understanding="3">😊</button>
+                    <button class="emoji-button" data-understanding="2">😐</button>
+                    <button class="emoji-button" data-understanding="1">😕</button>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card" data-card-index="2">
+                <div class="left-side">
+                    <p>Time: <span class="time-spent">0</span>s</p>
+                </div>
+                <div class="content">
+                    <h2>Basic Operations</h2>
+                    <p>The <strong>four basic operations</strong> are addition, subtraction, multiplication, and division.</p>
+                    <p>They are the <em>building blocks</em> of mathematics.</p>
+                </div>
+                <div class="buttons">
+                    <button class="emoji-button" data-understanding="3">😊</button>
+                    <button class="emoji-button" data-understanding="2">😐</button>
+                    <button class="emoji-button" data-understanding="1">😕</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link to the JavaScript file -->
+    <script src="js/scripts.js"></script>
+</body>
+</html>
