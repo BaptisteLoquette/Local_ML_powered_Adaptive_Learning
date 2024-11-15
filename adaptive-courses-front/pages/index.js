@@ -109,9 +109,17 @@ export default function Home() {
 
   return (
     <div className={styles.app}>
-      <button className={styles.pillButton} onClick={toggleAdhdMode}>
-        Toggle ADHD Mode
-      </button>
+      <div className={styles.toggleSwitch}>
+        <input
+          type="checkbox"
+          id="adhdModeToggle"
+          checked={adhdMode}
+          onChange={toggleAdhdMode}
+        />
+        <label htmlFor="adhdModeToggle" className={styles.switchLabel}>
+          <span className={styles.switchButton}></span>
+        </label>
+      </div>
       <div className={styles.timeProgressBars}>
         {cardsData.map((_, index) => (
           <div key={index} className={`${styles.timeBar} ${index === currentCardIndex ? styles.active : ''}`}>
