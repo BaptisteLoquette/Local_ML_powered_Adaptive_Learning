@@ -71,6 +71,7 @@ const cardsData = [
 export default function Home() {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [timing, setTiming] = useState(Array(cardsData.length).fill(0));
+  const [adhdMode, setAdhdMode] = useState(false);
 
   useEffect(() => {
     const startTime = Date.now();
@@ -93,14 +94,30 @@ export default function Home() {
     }
   };
 
+  const toggleAdhdMode = () => {
+    setAdhdMode(!adhdMode);
+  };
+
+  const applyBionicText = (text) => {
+    return text.split(' ').map(word => {
+      if (word.length > 2) {
+        return `<span>${word.slice(0, 2)}</span>${word.slice(2)}`;
+      }
+      return word;
+    }).join(' ');
+  };
+
   return (
     <div className={styles.app}>
+      <button className={styles.pillButton} onClick={toggleAdhdMode}>
+        Toggle ADHD Mode
+      </button>
       <div className={styles.timeProgressBars}>
         {cardsData.map((_, index) => (
           <div key={index} className={`${styles.timeBar} ${index === currentCardIndex ? styles.active : ''}`}>
             <span className={styles.timeLabel}>Card {index + 1}</span>
             <div className={styles.timeProgressBar}>
-              <div className={styles.timeProgress} style={{ height: `${(timing[index] / 30) * 100}%` }}></div>
+              <div className={styles.timeProgress} style={{ width: `${(timing[index] / 30) * 100}%` }}></div>
             </div>
             <span className={styles.timeSpent}>{timing[index].toFixed(2)}s</span>
           </div>
@@ -110,9 +127,11 @@ export default function Home() {
       <div className={styles.cardContainer}>
         {cardsData.map((card, index) => (
           <div key={index} className={styles.card} style={{ transform: `translateX(${(index - currentCardIndex) * 100}%)` }}>
-            <div className={styles.content}>
+            <div className={`${styles.content} ${adhdMode ? styles.adhdBionicText : ''}`}>
               <h2>{card.title}</h2>
-              {card.content.map((text, i) => <p key={i}>{text}</p>)}
+              {card.content.map((text, i) => (
+                <p key={i} dangerouslySetInnerHTML={{ __html: adhdMode ? applyBionicText(text) : text }}></p>
+              ))}
             </div>
             <div className={styles.buttons}>
               <button className={styles.emojiButton} onClick={handleEmojiClick}>😊</button>
