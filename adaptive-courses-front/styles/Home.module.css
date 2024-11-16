@@ -247,7 +247,7 @@ input:checked+.switchLabel .switchButton {
   align-items: center;
   justify-content: center;
   text-align: center;
-  transition: background-color 0.2s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .courseBox a {
@@ -257,7 +257,8 @@ input:checked+.switchLabel .switchButton {
 }
 
 .courseBox:hover {
-  background-color: #e0f7f5;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
 
 .courseListContainer {
@@ -276,7 +277,7 @@ input:checked+.switchLabel .switchButton {
   justify-content: center;
   text-align: center;
   color: #666;
-  transition: border-color 0.2s ease, background-color 0.2s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
   background-color: #f9f9f9;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -301,4 +302,9 @@ input:checked+.switchLabel .switchButton {
 
 .homeLink:hover {
   background-color: #5fb3ac;
+}
+
+.neon {
+  color: #39ff14;
+  text-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 40px #39ff14;
 }
