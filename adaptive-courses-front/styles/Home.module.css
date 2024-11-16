@@ -64,6 +64,8 @@
   font-weight: bold;
 }
 
+
+
 .cardContainer {
   position: relative;
   width: 90%;
@@ -204,4 +206,90 @@ input:checked+.switchLabel .switchButton {
 
 .adhdBionicText p span {
   font-weight: bold;
+}
+
+.dashboard {
+  padding: 20px;
+  text-align: center;
+}
+
+.dashboardLink {
+  display: inline-block;
+  margin: 20px 0;
+  padding: 10px 20px;
+  background-color: #76c7c0;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
+}
+
+.dashboardLink:hover {
+  background-color: #5fb3ac;
+}
+
+.courseList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.courseBox {
+  width: 150px;
+  height: 100px;
+  background-color: #f9f9f9;
+  border: 2px solid #76c7c0;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: background-color 0.2s ease;
+}
+
+.courseBox a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.courseBox:hover {
+  background-color: #e0f7f5;
+}
+
+.dragDropBox {
+  width: 100%;
+  max-width: 400px;
+  height: 150px;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #666;
+  transition: border-color 0.2s ease;
+}
+
+.dragDropBox.active {
+  border-color: #76c7c0;
+}
+
+.homeLink {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #76c7c0;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
+  z-index: 10;
+}
+
+.homeLink:hover {
+  background-color: #5fb3ac;
 }

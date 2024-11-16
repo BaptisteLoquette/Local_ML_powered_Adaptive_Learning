@@ -1,0 +1,25 @@
+[
+  {
+    "title": "Introduction to Algebra",
+    "content": [
+      "Algebra is a branch of mathematics dealing with symbols and the rules for manipulating those symbols.",
+      "It is a unifying thread of almost all of mathematics."
+    ]
+  },
+  {
+    "title": "Basic Algebraic Operations",
+    "content": [
+      "In algebra, we use four main operations:",
+      "Addition (+), Subtraction (-), Multiplication (×), and Division (÷)",
+      "When we combine these with variables like x and y, we can create expressions like:",
+      "2x + 3y = 10"
+    ]
+  },
+  {
+    "title": "Order of Operations",
+    "content": [
+      "Remember the acronym PEMDAS:",
+      "Parentheses, Exponents, Multiplication and Division (left to right), Addition and Subtraction (left to right)"
+    ]
+  }
+]
