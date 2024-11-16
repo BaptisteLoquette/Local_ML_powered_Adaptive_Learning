@@ -29,6 +29,7 @@ const Dashboard = () => {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [timing, setTiming] = useState(Array(courses.length).fill(0));
   const [adhdMode, setAdhdMode] = useState(false);
+  const [fileError, setFileError] = useState('');
 
   const handleDrag = (e) => {
     e.preventDefault();
@@ -40,9 +41,19 @@ const Dashboard = () => {
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      const file = e.dataTransfer.files[0];
-      console.log("Dropped file:", file);
+
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+      const file = files[0];
+      const validTypes = ['application/pdf', 'text/plain'];
+
+      if (validTypes.includes(file.type)) {
+        console.log('Dropped file:', file);
+        setFileError('');
+        // Handle file processing here
+      } else {
+        setFileError('Only PDF and TXT files are allowed.');
+      }
     }
   };
 
@@ -133,7 +144,7 @@ const Dashboard = () => {
       </aside>
 
       <main className="flex-1 p-12">
-        <nav style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem' }}>
+        <nav style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: '64rem', height: '100%' }}>
           <Input
             label="Search Courses"
             placeholder="Type to search..."
@@ -153,20 +164,34 @@ const Dashboard = () => {
             }}
             className="rounded-full"
           />
-          <Button
-            text="Upload"
-            theme="primary"
-            size="large"
-            customize={{
-              backgroundColor: 'rgba(99, 102, 241, 0.8)',
-              border: '2px solid rgba(99, 102, 241, 0.3)',
-              borderRadius: '50px',
-              padding: '12px 24px',
-              fontSize: '16px',
-              color: 'white'
+          <div
+            onDragEnter={handleDrag}
+            onDragOver={handleDrag}
+            onDragLeave={() => setDragActive(false)}
+            onDrop={handleDrop}
+            className={`border-2 border-dashed ${dragActive ? 'bg-blue-100' : 'bg-white'}`}
+            style={{
+              width: '300px',
+              height: '150px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              textAlign: 'center',
+              cursor: 'pointer',
+              transition: 'background-color 0.3s ease',
+              backgroundColor: dragActive ? 'rgba(99, 102, 241, 0.1)' : 'rgba(255, 255, 255, 0.1)',
+              border: '2px dashed rgba(99, 102, 241, 0.3)',
+              borderRadius: '8px',
+              padding: '20px',
+              boxSizing: 'border-box'
             }}
-          />
+          >
+            <span style={{ fontFamily: 'Arial, sans-serif', fontWeight: 'bold', color: 'black' }}>
+              {dragActive ? 'Drop here' : 'Drag and Drop PDF or TXT files here'}
+            </span>
+          </div>
         </nav>
+        {fileError && <p className="text-red-500 mt-2">{fileError}</p>}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-20">
           {courses.map((course, index) => (
