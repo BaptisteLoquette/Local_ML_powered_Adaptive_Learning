@@ -133,44 +133,40 @@ const Dashboard = () => {
       </aside>
 
       <main className="flex-1 p-12">
-        <div className="flex justify-between items-center mb-20">
-          <h2 className="text-3xl font-bold">Dashboard</h2>
-          <div className="flex items-center space-x-12">
-            <div className="relative group">
-              <Input
-                label="Search Courses"
-                placeholder="Type to search..."
-                onChange={(e) => console.log(e.target.value)}
-                size="medium"
-                width="200px"
-                validation={{
-                  characterMaxLength: 50
-                }}
-                style={{
-                  transform: 'scale(1)',  // Default scale
-                  borderRadius: '50px',  // Make the input rounded
-                  padding: '10px 16px',  // Decrease padding
-                  backgroundColor: 'rgba(99, 102, 241, 0.1)',
-                  border: '2px solid rgba(99, 102, 241, 0.3)',
-                  boxShadow: '0 0 0 2px rgba(99, 102, 241, 0.3)'  // Fix the rectangle around the rounded bar
-                }}
-              />
-            </div>
-            <Button
-              text="Upload"
-              theme="primary"
-              size="large"
-              customize={{
-                backgroundColor: 'rgba(99, 102, 241, 0.8)',
-                border: '2px solid rgba(99, 102, 241, 0.3)',
-                borderRadius: '100px',
-                padding: '16px 32px',
-                fontSize: '16px',
-                color: 'white'
-              }}
-            />
-          </div>
-        </div>
+        <nav style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem' }}>
+          <Input
+            label="Search Courses"
+            placeholder="Type to search..."
+            onChange={(e) => console.log(e.target.value)}
+            size="large"
+            width="300px"
+            validation={{
+              characterMaxLength: 50
+            }}
+            style={{
+              backgroundColor: 'rgba(99, 102, 241, 0.1)',
+              border: '2px solid rgba(99, 102, 241, 0.3)',
+              borderRadius: '9999px',
+              padding: '12px 24px',
+              fontSize: '16px',
+              color: 'white'
+            }}
+            className="rounded-full"
+          />
+          <Button
+            text="Upload"
+            theme="primary"
+            size="large"
+            customize={{
+              backgroundColor: 'rgba(99, 102, 241, 0.8)',
+              border: '2px solid rgba(99, 102, 241, 0.3)',
+              borderRadius: '50px',
+              padding: '12px 24px',
+              fontSize: '16px',
+              color: 'white'
+            }}
+          />
+        </nav>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-20">
           {courses.map((course, index) => (
