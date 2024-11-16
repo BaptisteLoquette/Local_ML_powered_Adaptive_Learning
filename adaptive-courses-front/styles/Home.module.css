@@ -232,8 +232,9 @@ input:checked+.switchLabel .switchButton {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  justify-content: center;
+  justify-content: flex-start;
   margin-bottom: 40px;
+  flex: 1;
 }
 
 .courseBox {
@@ -259,10 +260,15 @@ input:checked+.switchLabel .switchButton {
   background-color: #e0f7f5;
 }
 
+.courseListContainer {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
 .dragDropBox {
-  width: 100%;
-  max-width: 400px;
-  height: 150px;
+  width: 200px;
+  height: 100px;
   border: 2px dashed #ccc;
   border-radius: 10px;
   display: flex;
@@ -270,11 +276,14 @@ input:checked+.switchLabel .switchButton {
   justify-content: center;
   text-align: center;
   color: #666;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .dragDropBox.active {
   border-color: #76c7c0;
+  background-color: #e0f7f5;
 }
 
 .homeLink {
