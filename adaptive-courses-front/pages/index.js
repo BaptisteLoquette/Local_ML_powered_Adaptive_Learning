@@ -81,40 +81,107 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen flex bg-gradient-to-r from-purple-900 to-blue-900 text-white">
-      <aside className="w-64 bg-black shadow-md p-6">
+    <div className="min-h-screen flex flex-col md:flex-row bg-gradient-to-r from-purple-900 to-blue-900 text-white">
+      <aside className="w-full bg-black shadow-md p-6">
         <h1 className="text-2xl font-bold mb-4 text-neon">Learn</h1>
-        <nav className="space-y-4">
-          <Link href="#" className="block text-neon font-semibold">Dashboard</Link>
-          <Link href="#" className="block text-gray-400">Members</Link>
-          <Link href="#" className="block text-gray-400">My Library</Link>
-          <Link href="#" className="block text-gray-400">Works</Link>
-          <Link href="#" className="block text-gray-400">Notification</Link>
-          <Link href="#" className="block text-gray-400">Messages</Link>
-          <Link href="#" className="block text-gray-400">Settings</Link>
-          <Link href="#" className="block text-gray-400">Signout</Link>
+        <nav style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem' }}>
+          <Button
+            text="Dashboard"
+            theme="primary"
+            color="green"
+            onClick={() => console.log('Dashboard clicked')}
+            size="large"
+            style={{
+              background: 'linear-gradient(to right, #38b2ac, #3182ce)',
+              flex: '1'
+            }}
+          />
+          <Button
+            text="Exercises"
+            theme="primary"
+            color="pink"
+            onClick={() => console.log('Exercises clicked')}
+            size="large"
+            style={{
+              background: 'linear-gradient(to right, #ed64a6, #9f7aea)',
+              flex: '1'
+            }}
+          />
+          <Button
+            text="Notification"
+            theme="primary"
+            color="yellow"
+            onClick={() => console.log('Notification clicked')}
+            size="large"
+            style={{
+              background: 'linear-gradient(to right, #ecc94b, #ed8936)',
+              flex: '1'
+            }}
+          />
+          <Button
+            text="Signout"
+            theme="primary"
+            color="red"
+            onClick={() => console.log('Signout clicked')}
+            size="large"
+            style={{
+              background: 'linear-gradient(to right, #f56565, #ed64a6)',
+              flex: '1'
+            }}
+          />
         </nav>
       </aside>
 
-      <main className="flex-1 p-8">
-        <div className="flex justify-between items-center mb-8">
+      <main className="flex-1 p-8 flex flex-col space-y-8">
+        <div className="flex justify-between items-center">
           <h2 className="text-3xl font-bold">Dashboard</h2>
-          <div className="flex items-center space-x-4">
-            <Input label="Search" placeholder="Search..." />
-            <Button text="Upload" theme="primary" />
+          <div className="flex items-center gap-4">
+            <Input
+              label="Search"
+              placeholder="Search..."
+              onChange={(e) => console.log(e.target.value)}
+              style={{ minWidth: '200px' }}
+            />
+            <Button
+              text="Upload"
+              theme="primary"
+              style={{ marginLeft: 'auto' }}
+            />
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-8">
           {courses.map((course, index) => (
-            <Link href={course.path} key={index}>
-              <Card title={course.title} description={course.description} />
+            <Link href={course.path} key={index} className="block transform hover:scale-105 transition-all duration-300">
+              <Card
+                title={course.title}
+                description={course.description}
+                style={{
+                  height: '250px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  padding: '2rem',
+                  background: `linear-gradient(135deg, 
+                    ${index % 3 === 0 ? 'rgba(98, 126, 234, 0.1)' :
+                      index % 3 === 1 ? 'rgba(134, 239, 172, 0.1)' :
+                        'rgba(249, 168, 212, 0.1)'}, 
+                    rgba(17, 24, 39, 0.2))`,
+                  backdropFilter: 'blur(10px)',
+                  border: `2px solid ${index % 3 === 0 ? 'rgba(98, 126, 234, 0.3)' :
+                    index % 3 === 1 ? 'rgba(134, 239, 172, 0.3)' :
+                      'rgba(249, 168, 212, 0.3)'
+                    }`,
+                  borderRadius: '1.5rem',
+                  boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.2)',
+                }}
+              />
             </Link>
           ))}
         </div>
       </main>
     </div>
   );
-};
 
+}
 export default Dashboard;
