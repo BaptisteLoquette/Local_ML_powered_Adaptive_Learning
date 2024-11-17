@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { Button, Card, Input } from 'web3uikit';
 import styles from '../styles/Home.module.css';
@@ -30,6 +30,7 @@ const Dashboard = () => {
   const [timing, setTiming] = useState(Array(courses.length).fill(0));
   const [adhdMode, setAdhdMode] = useState(false);
   const [fileError, setFileError] = useState('');
+  const fileInputRef = useRef(null);
 
   const handleDrag = (e) => {
     e.preventDefault();
@@ -43,18 +44,100 @@ const Dashboard = () => {
     setDragActive(false);
 
     const files = e.dataTransfer.files;
+    handleFiles(files);
+  };
+
+  const handleFiles = (files) => {
     if (files.length > 0) {
       const file = files[0];
       const validTypes = ['application/pdf', 'text/plain'];
 
       if (validTypes.includes(file.type)) {
-        console.log('Dropped file:', file);
+        const formData = new FormData();
+        formData.append('file', file);
+
+        // Replace 'YOUR_API_ENDPOINT' with the actual endpoint of your Cloud OCR service
+        fetch('YOUR_API_ENDPOINT', {
+          method: 'POST',
+          body: formData,
+          headers: {
+            // Add any required headers here
+            // 'Authorization': 'Bearer YOUR_ACCESS_TOKEN',
+          },
+        })
+          .then(response => response.json())
+          .then(data => {
+            console.log('File processed successfully:', data);
+            // Handle the response data as needed
+          })
+          .catch(error => {
+            console.error('Error processing file:', error);
+          });
+
         setFileError('');
-        // Handle file processing here
       } else {
         setFileError('Only PDF and TXT files are allowed.');
       }
     }
+  };
+
+  const saveFileToIndexedDB = (fileName, fileData) => {
+    const request = indexedDB.open('fileStorage', 1);
+
+    request.onupgradeneeded = (event) => {
+      const db = event.target.result;
+      if (!db.objectStoreNames.contains('files')) {
+        db.createObjectStore('files', { keyPath: 'name' });
+      }
+    };
+
+    request.onsuccess = (event) => {
+      const db = event.target.result;
+      const transaction = db.transaction('files', 'readwrite');
+      const store = transaction.objectStore('files');
+      store.put({ name: fileName, data: fileData });
+
+      transaction.oncomplete = () => {
+        console.log('File saved successfully');
+      };
+
+      transaction.onerror = (error) => {
+        console.error('Error saving file:', error);
+      };
+    };
+
+    request.onerror = (error) => {
+      console.error('Error opening IndexedDB:', error);
+    };
+  };
+
+  const getFileFromIndexedDB = (fileName) => {
+    const request = indexedDB.open('fileStorage', 1);
+
+    request.onsuccess = (event) => {
+      const db = event.target.result;
+      const transaction = db.transaction('files', 'readonly');
+      const store = transaction.objectStore('files');
+      const getRequest = store.get(fileName);
+
+      getRequest.onsuccess = () => {
+        const fileData = getRequest.result;
+        if (fileData) {
+          console.log('Retrieved file:', fileData);
+          // Process the file data as needed<<
+        } else {
+          console.log('File not found');
+        }
+      };
+
+      getRequest.onerror = (error) => {
+        console.error('Error retrieving file:', error);
+      };
+    };
+
+    request.onerror = (error) => {
+      console.error('Error opening IndexedDB:', error);
+    };
   };
 
   useEffect(() => {
@@ -89,6 +172,11 @@ const Dashboard = () => {
       }
       return word;
     }).join(' ');
+  };
+
+  const handleFileSelect = (e) => {
+    const files = e.target.files;
+    handleFiles(files);
   };
 
   return (
@@ -165,6 +253,7 @@ const Dashboard = () => {
             className="rounded-full"
           />
           <div
+            onClick={() => fileInputRef.current.click()}
             onDragEnter={handleDrag}
             onDragOver={handleDrag}
             onDragLeave={() => setDragActive(false)}
@@ -189,6 +278,13 @@ const Dashboard = () => {
             <span style={{ fontFamily: 'Arial, sans-serif', fontWeight: 'bold', color: 'black' }}>
               {dragActive ? 'Drop here' : 'Drag and Drop PDF or TXT files here'}
             </span>
+            <input
+              type="file"
+              ref={fileInputRef}
+              style={{ display: 'none' }}
+              onChange={handleFileSelect}
+              accept=".pdf,.txt"
+            />
           </div>
         </nav>
         {fileError && <p className="text-red-500 mt-2">{fileError}</p>}
@@ -225,6 +321,6 @@ const Dashboard = () => {
       </main>
     </div>
   );
-
 }
+
 export default Dashboard;
